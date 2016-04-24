@@ -31,12 +31,13 @@ class TelegramApi
      */
     public function sendPhoto($link)
     {
-        $file = file_put_contents(__DIR__ . time() . ".jpg", fopen($link, 'r'));
+        $filename = __DIR__ . time() . ".jpg";
+        file_put_contents($filename, fopen($link, 'r'));
         $result = Request::sendPhoto(
             [
                 'chat_id' => Config::getTelegramChat(),
             ],
-            $this->telegram->getUploadPath() . $file
+            $this->telegram->getUploadPath() . $filename
         );
     }
 }
