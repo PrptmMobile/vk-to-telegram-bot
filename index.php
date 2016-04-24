@@ -43,7 +43,7 @@ while ($key >= 0) {
 
         //If we have post text - send it
         if (isset($post["text"])) {
-            $message = appendLink($post["text"], $link);
+            $message = VkApi::appendLink($post["text"], $link);
             $telegram->sendMessage($message);
         }
 
