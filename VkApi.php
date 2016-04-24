@@ -4,16 +4,32 @@ class VkApi
 {
     private static $api_ver = "5.50";
 
+    /**
+     * @param $method
+     * @param $params
+     * @return string
+     * Return url of method to request
+     */
     public static function getMethodUrl($method, $params)
     {
         return "https://api.vk.com/method/$method?v=" . self::$api_ver . "&" . http_build_query($params);
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     * Return array of vk response
+     */
     public static function request($url)
     {
         return json_decode(file_get_contents($url), true);
     }
 
+    /**
+     * @param $photo
+     * @return bool|string
+     * Returns url of max sized available photo
+     */
     public static function findMaxSizeLink($photo)
     {
         $prefix = "photo_";
