@@ -58,6 +58,15 @@ function getTextPreview($text)
 
 /**
  * @param $text
+ * @return string
+ * Append "Comment in vk:" to text
+ */
+function appendLink($text){
+    return trim($text . " Комментировать в ВК:") . " ";
+}
+
+/**
+ * @param $text
  * @return mixed
  * Clears $text from vk links [club1|Test] or [id1|Test]
  */

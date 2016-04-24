@@ -41,8 +41,8 @@ while ($key >= 0) {
 
         //If we have post text - send it
         if (isset($post["text"])) {
-            $message = getTextPreview($post["text"]) . $message;
-            sendMessageAsUrl($post["text"]);
+            $message = appendLink($post["text"]) . $message;
+            sendMessageAsUrl($message);
         }
 
         //If we have attachments - check them
