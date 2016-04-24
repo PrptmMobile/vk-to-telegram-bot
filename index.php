@@ -1,9 +1,5 @@
 <?php
 require_once "vendor/autoload.php";
-require_once "Config.php";
-require_once "functions.php";
-require_once "VkApi.php";
-require_once "TelegramApi.php";
 
 //Get vk response
 $response = VkApi::request(VkApi::getMethodUrl("wall.get", Config::getVkParams()))["response"];
@@ -16,13 +12,13 @@ $last = json_decode(file_get_contents(Config::getFileLast()), true);
 
 //Check if we have some troubles, while reading from last.json
 if (empty($last)) {
-    addLog("For some reason " . Config::getFileLast() . " is empty or we can't properly read from it");
+    Functions::addLog("For some reason " . Config::getFileLast() . " is empty or we can't properly read from it");
     return false;
 }
 
 //Check if we have no posts
 if (empty($response["items"])) {
-    addLog("Fail loading data from VK");
+    Functions::addLog("Fail loading data from VK");
     return false;
 }
 
@@ -69,11 +65,11 @@ while ($key >= 0) {
 //Save log
 if ($posted["counter"] > 0) {
     $log = "Add " . $posted["counter"] . " new posts: " . implode(",", $posted["ids"]) . " | from last.json: " . implode(",", $last);
-    addLog($log);
+    Functions::addLog($log);
 
     //Save last
     $posts = array_merge($last, $posted["ids"]);
-    saveLast($posts);
+    Functions::saveLast($posts);
 } else {
     //addLog("No new posts");
 }
