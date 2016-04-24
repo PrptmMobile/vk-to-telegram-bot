@@ -15,13 +15,13 @@ if (!file_exists(Config::getFileLast())) {
 $last = json_decode(file_get_contents(Config::getFileLast()), true);
 
 //Check if we have some troubles, while reading from last.json
-if(empty($last)){
-    addLog("For some reason ".Config::getFileLast()." is empty or we can't properly read from it");
+if (empty($last)) {
+    addLog("For some reason " . Config::getFileLast() . " is empty or we can't properly read from it");
     return false;
 }
 
 //Check if we have no posts
-if(empty($response["items"])){
+if (empty($response["items"])) {
     addLog("Fail loading data from VK");
     return false;
 }
@@ -48,10 +48,10 @@ while ($key >= 0) {
         }
 
         //If we have attachments - check them
-        if (isset($post["attachments"])){
+        if (isset($post["attachments"])) {
             //Scan all attachments for photos
-            foreach($post["attachments"] as $attach){
-                if($attach["type"]  == "photo"){
+            foreach ($post["attachments"] as $attach) {
+                if ($attach["type"] == "photo") {
                     $telegram->sendPhoto(VkApi::findMaxSizeLink($attach["photo"]));
                 }
             }
@@ -67,13 +67,13 @@ while ($key >= 0) {
 }
 
 //Save log
-if($posted["counter"] > 0){
-    $log = "Add ".$posted["counter"]." new posts: " . implode(",", $posted["ids"]) . " | from last.json: " . implode(",", $last);
+if ($posted["counter"] > 0) {
+    $log = "Add " . $posted["counter"] . " new posts: " . implode(",", $posted["ids"]) . " | from last.json: " . implode(",", $last);
     addLog($log);
 
     //Save last
     $posts = array_merge($last, $posted["ids"]);
     saveLast($posts);
-}else{
+} else {
     //addLog("No new posts");
 }
