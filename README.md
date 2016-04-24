@@ -7,7 +7,7 @@
 ## Installation [production]
 
 * `composer install --no-dev --optimize-autoloader`
-* `composer update`
+* `composer dump-autoload`
 * rename Config-sample.php to Config.php
 * then configure Config.php
 * !IMPORTANT! watch repository for 'config' updates
