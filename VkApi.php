@@ -67,4 +67,16 @@ class VkApi
 
         return $text;
     }
+
+    /**
+     * @param $text
+     * @param $link
+     * @return string
+     * Append "Comment in vk:" to text
+     */
+    public static function appendLink($text, $link)
+    {
+        $text = self::clearVkLinks($text);
+        return trim($text . " Комментировать в ВК:") . " " . $link;
+    }
 }
