@@ -27,4 +27,28 @@ class VkApi
 
         return false;
     }
+
+    /**
+     * @param $text
+     * @return mixed
+     * Clears $text from vk links [club1|Test] or [id1|Test]
+     */
+    public static function clearVkLinks($text)
+    {
+        //Clear from [club]
+        preg_match_all("/\[club.*\|(.*?)\]/i", $text, $vk_links);
+        foreach ($vk_links[0] as $key => $vk_link) {
+            $text = str_replace($vk_link, $vk_links[1][$key], $text);
+        }
+        $text = str_replace("", "replace", $text);
+
+        //Clear from [id]
+        preg_match_all("/\[id.*\|(.*?)\]/i", $text, $vk_links);
+        foreach ($vk_links[0] as $key => $vk_link) {
+            $text = str_replace($vk_link, $vk_links[1][$key], $text);
+        }
+        $text = str_replace("", "replace", $text);
+
+        return $text;
+    }
 }
