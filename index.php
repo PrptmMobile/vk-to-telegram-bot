@@ -39,11 +39,21 @@ while ($key >= 0) {
 
         $message = "https://vk.com/wall" . Config::getGroupId() . "_" . $post["id"];
 
+        //If we have post text - send it
         if (isset($post["text"])) {
             $message = getTextPreview($post["text"]) . $message;
+            sendMessageAsUrl($post["text"]);
         }
 
-        sendMessageAsUrl($message);
+        //If we have attachments - check them
+        if (isset($post["attachments"])){
+            //Scan all attachments for photos
+            foreach($post["attachments"] as $attach){
+                if($attach["type"]  == "photo"){
+                    sendMessageAsUrl($post["text"]);
+                }
+            }
+        }
 
         $posted["counter"]++;
         array_push($posted["ids"], $post["id"]);
