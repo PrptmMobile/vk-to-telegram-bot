@@ -4,7 +4,7 @@
   },
   "autoload": {
     "psr-0": {
-      "Functions": "app/",
+      "Log": "app/",
       "Config": "app/",
       "TelegramApi": "app/",
       "VkApi": "app/"

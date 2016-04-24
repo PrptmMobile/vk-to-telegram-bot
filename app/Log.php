@@ -1,6 +1,6 @@
 <?php
 
-class Functions{
+class Log{
     /**
      * @param $str
      * Puts str to log file

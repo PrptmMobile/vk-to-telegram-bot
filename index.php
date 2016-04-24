@@ -12,13 +12,13 @@ $last = json_decode(file_get_contents(Config::getFileLast()), true);
 
 //Check if we have some troubles, while reading from last.json
 if (empty($last)) {
-    Functions::addLog("For some reason " . Config::getFileLast() . " is empty or we can't properly read from it");
+    Log::addLog("For some reason " . Config::getFileLast() . " is empty or we can't properly read from it");
     return false;
 }
 
 //Check if we have no posts
 if (empty($response["items"])) {
-    Functions::addLog("Fail loading data from VK");
+    Log::addLog("Fail loading data from VK");
     return false;
 }
 
@@ -65,11 +65,11 @@ while ($key >= 0) {
 //Save log
 if ($posted["counter"] > 0) {
     $log = "Add " . $posted["counter"] . " new posts: " . implode(",", $posted["ids"]) . " | from last.json: " . implode(",", $last);
-    Functions::addLog($log);
+    Log::addLog($log);
 
     //Save last
     $posts = array_merge($last, $posted["ids"]);
-    Functions::saveLast($posts);
+    Log::saveLast($posts);
 } else {
     //addLog("No new posts");
 }
