@@ -50,7 +50,7 @@ while ($key >= 0) {
             //Scan all attachments for photos
             foreach($post["attachments"] as $attach){
                 if($attach["type"]  == "photo"){
-                    sendMessageAsUrl($post["text"]);
+                    sendMessageAsUrl(VkApi::findMaxSizeLink($attach["photo"]));
                 }
             }
         }
