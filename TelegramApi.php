@@ -15,7 +15,7 @@ class TelegramApi
      * @param string $message
      * Send message with URL to the post
      */
-    public function sendMessageAsUrl($message)
+    public function sendMessage($message)
     {
         $result = Request::sendMessage(
             [
