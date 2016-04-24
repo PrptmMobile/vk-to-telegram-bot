@@ -7,13 +7,10 @@
 ## Installation [production]
 
 * `composer install --no-dev --optimize-autoloader`
+* `composer update`
 * rename Config-sample.php to Config.php
 * then configure Config.php
 * !IMPORTANT! watch repository for 'config' updates
-* @TODO: add cron info / hide /vendor/ from web 
-* add normal PSR classes load
-* add telegram api updates
-* add docs
 
 ## Configuration:
 
