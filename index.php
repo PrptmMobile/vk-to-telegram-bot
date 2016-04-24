@@ -3,6 +3,7 @@ require_once "vendor/autoload.php";
 require_once "Config.php";
 require_once "functions.php";
 require_once "VkApi.php";
+require_once "TelegramApi.php";
 
 //Get vk response
 $response = VkApi::request(VkApi::getMethodUrl("wall.get", Config::getVkParams()))["response"];
@@ -32,6 +33,7 @@ $posted = [
     "counter" => 0,
     "ids" => []
 ];
+$telegram = new TelegramApi();
 while ($key >= 0) {
     $post = $response["items"][$key];
     //If we have matches - ignore them
@@ -42,7 +44,7 @@ while ($key >= 0) {
         //If we have post text - send it
         if (isset($post["text"])) {
             $message = appendLink($post["text"]) . $message;
-            sendMessageAsUrl($message);
+            $telegram->sendMessageAsUrl($message);
         }
 
         //If we have attachments - check them
@@ -50,7 +52,7 @@ while ($key >= 0) {
             //Scan all attachments for photos
             foreach($post["attachments"] as $attach){
                 if($attach["type"]  == "photo"){
-                    sendMessageAsUrl(VkApi::findMaxSizeLink($attach["photo"]));
+                    $telegram->sendPhoto(VkApi::findMaxSizeLink($attach["photo"]));
                 }
             }
         }

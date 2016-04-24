@@ -1,7 +1,5 @@
 <?php
 
-use Longman\TelegramBot\Request;
-
 /**
  * @param $str
  * Puts str to log file
@@ -10,21 +8,6 @@ function addLog($str)
 {
     $str = "[" . date('H:i:s') . "]: " . $str . "\n";
     file_put_contents(Config::getFileLog(), $str, FILE_APPEND);
-}
-
-/**
- * @param string $message
- * Send message with URL to the post
- */
-function sendMessageAsUrl($message)
-{
-    $telegram = new Longman\TelegramBot\Telegram(Config::getTelegramKey(), Config::getTelegramName());
-    $result = Request::sendMessage(
-        [
-            'chat_id' => Config::getTelegramChat(),
-            'text' => $message
-        ]
-    );
 }
 
 /**
