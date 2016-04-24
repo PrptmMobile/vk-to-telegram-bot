@@ -45,6 +45,7 @@ function getTextPreview($text)
  * Append "Comment in vk:" to text
  */
 function appendLink($text){
+    $text = clearVkLinks($text);
     return trim($text . " Комментировать в ВК:") . " ";
 }
 
