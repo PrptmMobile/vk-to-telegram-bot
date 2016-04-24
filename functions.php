@@ -21,26 +21,6 @@ function saveLast($last)
 
 /**
  * @param $text
- * @return string
- * Cuts text to 140 symbols or more till the space and add "Read more:" text
- */
-function getTextPreview($text)
-{
-    $text = clearVkLinks($text);
-    $i = 139;
-    if (!isset($text[$i])) {
-        return trim($text . " Комментировать в ВК:") . " ";
-    }
-    $max = strlen($text) - 1;
-    while ($text[$i] != " " and $i < $max) {
-        $i++;
-    }
-    $text = substr($text, 0, $i);
-    return $text . "... Подробнее: ";
-}
-
-/**
- * @param $text
  * @param $link
  * @return string
  * Append "Comment in vk:" to text
