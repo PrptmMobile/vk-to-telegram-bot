@@ -65,12 +65,13 @@ while ($key >= 0) {
 }
 
 //Save log
-if ($parsed_ids == $last) {
-    //addLog("No new posts");
-} else {
-    $log = "Add $posted new posts: " . implode(",", $posted["ids"]) . " | from last.json: " . implode(",", $last);
+if($posted["counter"] > 0){
+    $log = "Add ".$posted["counter"]." new posts: " . implode(",", $posted["ids"]) . " | from last.json: " . implode(",", $last);
     addLog($log);
 
     //Save last
-    saveLast($parsed_ids);
+    $posts = array_merge($last, $posted["ids"]);
+    saveLast($posts);
+}else{
+    //addLog("No new posts");
 }
