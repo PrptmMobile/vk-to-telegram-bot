@@ -37,7 +37,7 @@ class TelegramApi
             [
                 'chat_id' => Config::getTelegramChat(),
             ],
-            $this->telegram->getUploadPath() . $filename
+            $filename
         );
     }
 }
