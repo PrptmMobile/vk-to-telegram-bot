@@ -39,11 +39,11 @@ while ($key >= 0) {
     //If we have matches - ignore them
     if (!in_array($post["id"], $last)) {
 
-        $message = "https://vk.com/wall" . Config::getGroupId() . "_" . $post["id"];
+        $link = "https://vk.com/wall" . Config::getGroupId() . "_" . $post["id"];
 
         //If we have post text - send it
         if (isset($post["text"])) {
-            $message = appendLink($post["text"]) . $message;
+            $message = appendLink($post["text"], $link);
             $telegram->sendMessageAsUrl($message);
         }
 
