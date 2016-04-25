@@ -1,6 +1,5 @@
 <?php
-
-require_once "app/Log.php";
+require_once "vendor/autoload.php";
 
 if(isset($_GET["clear"])){
     Log::clearLog();
