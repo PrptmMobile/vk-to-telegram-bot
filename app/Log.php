@@ -12,6 +12,13 @@ class Log{
     }
 
     /**
+     * Clears log file
+     */
+    public static function clearLog(){
+        unlink(Config::getFileLog());
+    }
+
+    /**
      * @param array $last
      * Saves last posts' ids to .json file
      */
