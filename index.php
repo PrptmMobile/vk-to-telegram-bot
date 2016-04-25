@@ -64,7 +64,7 @@ while ($key >= 0) {
 
 //Save log
 if ($posted["counter"] > 0) {
-    $log = "Add " . $posted["counter"] . " new posts: " . implode(",", $posted["ids"]) . " | from last.json: " . implode(",", $last);
+    $log = "Add " . $posted["counter"] . " new posts: " . implode(",", $posted["ids"]) . " | from " . Config::getFileLast() . ": " . implode(",", $last);
     Log::addLog($log);
 
     //Save last
